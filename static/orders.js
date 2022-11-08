@@ -52,6 +52,21 @@ $(document).ready(function(){
     let sort_index = data['sort_index']
     let sort_flag = data['sort_flag']
 
+    let limit = data['limit']
+    let offset = data['offset']
+    let next = data['next']
+    console.log(parseInt(limit)+parseInt(offset))
+
+    if (offset!=0){
+        $("#page").append("<a class='previous' id='previous'>previous</a>")
+        $("#previous").attr('href', url+'?offset='+String(parseInt(data['offset'])-parseInt(data['limit']))+"&limit="+data['limit']+"&sorted=ASC&sorted_by=is_buy_order")
+    }
+
+    if (next!=0){
+        $("#page").append("<a class='next' id='next'>next</a>")
+        $("#next").attr('href', url+'?offset='+String(parseInt(data['offset'])+parseInt(data['limit']))+"&limit="+data['limit']+"&sorted=ASC&sorted_by=is_buy_order")
+    }
+
     if (sort_index != ''){
         if (sort_flag==1){
             $("#"+sort_index).append('↑')

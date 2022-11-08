@@ -5,7 +5,7 @@ from datetime import datetime
 import requests
 import json
 app = Flask(__name__)
-
+host_url = "http://3.133.83.203:5011"
 # ROUTES
 @app.get("/marketorders/")
 def get_health():
@@ -22,7 +22,7 @@ def get_health():
 
 @app.route('/marketorders/<type_name>', methods=['GET', 'POST'])
 def marketorders(type_name):
-    url = 'http://127.0.0.1:5011/api/marketorders/{}?{}'.format(type_name, request.query_string.decode("utf-8") )
+    url = host_url+'/api/marketorders/{}?{}'.format(type_name, request.query_string.decode("utf-8") )
     print(url)
     try:
         uResponse = requests.get(url)
@@ -34,7 +34,7 @@ def marketorders(type_name):
 
 @app.route('/item/<type_name>', methods=['GET', 'POST'])
 def itemdetail(type_name):
-    url = 'http://127.0.0.1:5011/api/item/{}'.format(type_name)
+    url = host_url+'/api/item/{}'.format(type_name)
     print(url)
     try:
         uResponse = requests.get(url)
@@ -46,7 +46,7 @@ def itemdetail(type_name):
 
 @app.route('/marketorders/<type_name>/<station_id>', methods=['GET', 'POST'])
 def marketorders_station(type_name,station_id):
-    url = 'http://127.0.0.1:5011/api/marketorders/{}/{}?{}'.format(type_name, station_id, request.query_string.decode("utf-8") )
+    url = host_url+'/api/marketorders/{}/{}?{}'.format(type_name, station_id, request.query_string.decode("utf-8") )
     print(url)
     try:
         uResponse = requests.get(url)

@@ -28,7 +28,7 @@ def get_orders_by_name(type_name):
     links.append({"href": '/marketorders/'+type_name, "rel":"sort", "type": "GET"} )
     links.append({"href": '/item/'+type_name, "rel":"item detail", "type": "GET"})
 
-    rt = MicroService2.get_orders_by_name(type_name,limit,offset,sorted,sorted_by)
+    rt,total_record = MicroService2.get_orders_by_name(type_name,limit,offset,sorted,sorted_by)
 
     if rt:
         result = dict()
@@ -41,6 +41,10 @@ def get_orders_by_name(type_name):
         result['sort_flag'] = sort_flag
         result['limit'] = limit
         result['offset'] = offset
+        if len(rt)<int(limit) or int(offset)+int(limit)>=total_record:
+            result['next']=0
+        else:
+            result['next']=1
         rsp = Response(json.dumps(result), status=200, content_type="application.json")
     else:
         rsp = Response("NOT FOUND", status=404, content_type="text/plain")
@@ -87,7 +91,7 @@ def get_orders_by_name_station(type_name,station_id):
     links.append( {"href": '/station/'+station_id, "rel":"station detail", "type": "GET"} )
     links.append( {"href": '/marketorders/'+type_name+'/'+station_id, "rel":"sort", "type": "GET"} )
 
-    rt = MicroService2.get_orders_by_name_station(type_name,station_id,limit,offset,sorted,sorted_by)
+    rt, total_record = MicroService2.get_orders_by_name_station(type_name,station_id,limit,offset,sorted,sorted_by)
 
     if rt:
         result = dict()
@@ -101,6 +105,10 @@ def get_orders_by_name_station(type_name,station_id):
         result['sort_flag'] = sort_flag
         result['limit'] = limit
         result['offset'] = offset
+        if len(rt)<int(limit) or int(offset)+int(limit)>=total_record:
+            result['next']=0
+        else:
+            result['next']=1
         rsp = Response(json.dumps(result), status=200, content_type="application.json")
     else:
         rsp = Response("NOT FOUND", status=404, content_type="text/plain")

@@ -41,6 +41,22 @@ class MicroService2:
             sort_param = sort_param + i + ' '+ v + ','
         sort_param = sort_param[:-1]
 
+        sql = """
+             SELECT COUNT(*) AS total
+             FROM (
+                  SELECT * FROM microservice_2.type_name where type_name= %s
+             ) AS t1
+             LEFT JOIN microservice_2.market_orders AS t2
+             ON t1.type_id = t2.type_id
+             WHERE station_id<>'None'
+             """
+        key = [type_name]
+        conn = MicroService2._get_connection()
+        cur = conn.cursor()
+        res = cur.execute(sql,args = key)
+        result = cur.fetchall()
+        total_record= result[0]['total']
+
         sql =  """
                SELECT t1.type_name AS type_name, t1.type_id AS type_id, station_id, duration, is_buy_order, issued, price, volume_total, volume_remain, last_modified
                FROM (
@@ -58,7 +74,7 @@ class MicroService2:
         res = cur.execute(sql,args = key)
         result = cur.fetchall()
 
-        return result
+        return result,total_record
 
 
     @staticmethod
@@ -91,6 +107,22 @@ class MicroService2:
             sort_param = sort_param + i + ' '+ v + ','
         sort_param = sort_param[:-1]
 
+        sql = """
+             SELECT COUNT(*) AS total
+             FROM (
+                  SELECT * FROM microservice_2.type_name where type_name= %s
+             ) AS t1
+             LEFT JOIN microservice_2.market_orders AS t2
+             ON t1.type_id = t2.type_id
+             WHERE station_id=%s
+             """
+        key = [type_name,station_id]
+        conn = MicroService2._get_connection()
+        cur = conn.cursor()
+        res = cur.execute(sql,args = key)
+        result = cur.fetchall()
+        total_record= result[0]['total']
+
         sql =  """
                SELECT t1.type_name AS type_name, t1.type_id AS type_id, station_id, duration, is_buy_order, issued, price, volume_total, volume_remain, last_modified
                FROM (
@@ -108,4 +140,4 @@ class MicroService2:
         res = cur.execute(sql,args = key)
         result = cur.fetchall()
 
-        return result
+        return result,total_record
