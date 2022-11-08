@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+
+<script type="text/javascript" src="{{ url_for('static', filename = 'orders.js') }}"></script>
+
+<script>
+    let data = {{data|tojson}}
+    console.log(data)
+</script>
+
+<span class="items">item name: </span> <a class="items" id="item_name"> </a><br>
+<span class="items">item id: </span> <span class="items" id="item_id"> </span><br>
+
+<br>
+<br>
+    <a class="words" id="station_id">station id</a><a class="words" id="duration">duration</a><a class="words" id="is_buy_order">is buy order</a><a class="words" id="price">price</a><a class="words" id="volume_remain">volume remain</a><a class="words" id="volume_total">volume total</a><a class="words" id="last_modified">last modified</a>
+<hr>
+<div id="order_container">
+</div>
+
+{% endblock %}
+
