@@ -25,7 +25,7 @@ function expand_cate(group_id){
         let next_level = String(parseInt(curr.attr('level'))+1)
         $.ajax({
             type: "POST",
-            url: host_url + "/api/marketorders/",
+            url: host_url + "/api/marketorders",
             dataType : "json",
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify(data),
