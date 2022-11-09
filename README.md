@@ -22,3 +22,23 @@ sudo docker run -p 5011:5011 -d ms2
 ```
 
 Remember to add port 5011 to the securtiy group.
+
+Show all docker
+```
+sudo docker ps
+```
+
+Stop a docker
+```
+sudo docker stop container_id
+```
+
+Show all container
+```
+sudo docker ps -a
+```
+
+Delete conatiner
+```
+sudo docker rm container_id
+```
