@@ -46,7 +46,7 @@ class MicroService2:
              FROM (
                   SELECT * FROM microService_2.Type_Name where type_name= %s
              ) AS t1
-             LEFT JOIN microService_2.market_orders AS t2
+             LEFT JOIN microService_2.Market_Orders AS t2
              ON t1.type_id = t2.type_id
              WHERE station_id<>'None'
              """
@@ -112,7 +112,7 @@ class MicroService2:
              FROM (
                   SELECT * FROM microService_2.Type_Name where type_name= %s
              ) AS t1
-             LEFT JOIN microService_2.market_orders AS t2
+             LEFT JOIN microService_2.Market_Orders AS t2
              ON t1.type_id = t2.type_id
              WHERE station_id=%s
              """
