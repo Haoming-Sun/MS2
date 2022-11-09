@@ -35,9 +35,9 @@ def category():
     data = json.loads(Jresponse)
     return render_template('homepage.html' , data = data, name_diction = list(search_cache))
 
-@app.route('/marketorders/<type_name>', methods=['GET', 'POST'])
-def marketorders(type_name):
-    url = host_url+'/api/marketorders/{}?{}'.format(type_name, request.query_string.decode("utf-8") )
+@app.route('/marketorders/<type_id>', methods=['GET', 'POST'])
+def marketorders(type_id):
+    url = host_url+'/api/marketorders/{}?{}'.format(type_id, request.query_string.decode("utf-8") )
     print(url)
     try:
         uResponse = requests.get(url)
@@ -47,9 +47,9 @@ def marketorders(type_name):
     data = json.loads(Jresponse)
     return render_template('orders.html' , data = data)
 
-@app.route('/item/<type_name>', methods=['GET', 'POST'])
-def itemdetail(type_name):
-    url = host_url+'/api/item/{}'.format(type_name)
+@app.route('/item/<type_id>', methods=['GET', 'POST'])
+def itemdetail(type_id):
+    url = host_url+'/api/item/{}'.format(type_id)
     print(url)
     try:
         uResponse = requests.get(url)
@@ -59,9 +59,9 @@ def itemdetail(type_name):
     data = json.loads(Jresponse)
     return render_template('item.html' , data = data)
 
-@app.route('/marketorders/<type_name>/<station_id>', methods=['GET', 'POST'])
-def marketorders_station(type_name,station_id):
-    url = host_url+'/api/marketorders/{}/{}?{}'.format(type_name, station_id, request.query_string.decode("utf-8") )
+@app.route('/marketorders/<type_id>/<station_id>', methods=['GET', 'POST'])
+def marketorders_station(type_id,station_id):
+    url = host_url+'/api/marketorders/{}/{}?{}'.format(type_id, station_id, request.query_string.decode("utf-8") )
     print(url)
     try:
         uResponse = requests.get(url)

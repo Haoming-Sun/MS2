@@ -22,7 +22,7 @@ class MicroService2:
         return conn
 
     @staticmethod
-    def get_orders_by_name(type_name,limit,offset,sorted,sorted_by):
+    def get_orders_by_name(type_id,limit,offset,sorted,sorted_by):
         sort_dict = {'is_buy_order':'DESC','price':'DESC','duration':'DESC','station_id':'DESC','last_modified':'DESC','volume_remain':'DESC','volume_total':'DESC'}
         if sorted:
             sorted = list(sorted.split(','))
@@ -44,13 +44,13 @@ class MicroService2:
         sql = """
              SELECT COUNT(*) AS total
              FROM (
-                  SELECT * FROM microService_2.Type_Name where type_name= %s
+                  SELECT * FROM microService_2.Type_Name where type_id= %s
              ) AS t1
              LEFT JOIN microService_2.Market_Orders AS t2
              ON t1.type_id = t2.type_id
              WHERE station_id<>'None'
              """
-        key = [type_name]
+        key = [type_id]
         conn = MicroService2._get_connection()
         cur = conn.cursor()
         res = cur.execute(sql,args = key)
@@ -60,7 +60,7 @@ class MicroService2:
         sql =  """
                SELECT t1.type_name AS type_name, t1.type_id AS type_id, station_id, duration, is_buy_order, issued, price, volume_total, volume_remain, last_modified
                FROM (
-                    SELECT * FROM microService_2.Type_Name where type_name= %s
+                    SELECT * FROM microService_2.Type_Name where type_id= %s
                ) AS t1
                LEFT JOIN microService_2.Market_Orders AS t2
                ON t1.type_id = t2.type_id
@@ -68,7 +68,7 @@ class MicroService2:
                ORDER BY """+sort_param+"""
                LIMIT %s OFFSET %s;
                """
-        key = [type_name,int(limit),int(offset)]
+        key = [type_id,int(limit),int(offset)]
         conn = MicroService2._get_connection()
         cur = conn.cursor()
         res = cur.execute(sql,args = key)
@@ -78,10 +78,10 @@ class MicroService2:
 
 
     @staticmethod
-    def get_item_by_name(type_name):
+    def get_item_by_name(type_id):
 
-        sql =  """SELECT * FROM microService_2.Type_Name where type_name= %s"""
-        key = [type_name]
+        sql =  """SELECT * FROM microService_2.Type_Name where type_id= %s"""
+        key = [type_id]
         conn = MicroService2._get_connection()
         cur = conn.cursor()
         res = cur.execute(sql,args = key)
@@ -90,7 +90,7 @@ class MicroService2:
         return result
 
     @staticmethod
-    def get_orders_by_name_station(type_name,station_id,limit,offset,sorted,sorted_by):
+    def get_orders_by_name_station(type_id,station_id,limit,offset,sorted,sorted_by):
         sort_dict = {'is_buy_order':'DESC','price':'DESC','duration':'DESC','station_id':'DESC','last_modified':'DESC','volume_remain':'DESC','volume_total':'DESC'}
         if sorted:
             sorted = list(sorted.split(','))
@@ -110,13 +110,13 @@ class MicroService2:
         sql = """
              SELECT COUNT(*) AS total
              FROM (
-                  SELECT * FROM microService_2.Type_Name where type_name= %s
+                  SELECT * FROM microService_2.Type_Name where type_id= %s
              ) AS t1
              LEFT JOIN microService_2.Market_Orders AS t2
              ON t1.type_id = t2.type_id
              WHERE station_id=%s
              """
-        key = [type_name,station_id]
+        key = [type_id,station_id]
         conn = MicroService2._get_connection()
         cur = conn.cursor()
         res = cur.execute(sql,args = key)
@@ -126,7 +126,7 @@ class MicroService2:
         sql =  """
                SELECT t1.type_name AS type_name, t1.type_id AS type_id, station_id, duration, is_buy_order, issued, price, volume_total, volume_remain, last_modified
                FROM (
-                    SELECT * FROM microService_2.Type_Name where type_name= %s
+                    SELECT * FROM microService_2.Type_Name where type_id= %s
                ) AS t1
                LEFT JOIN microService_2.Market_Orders AS t2
                ON t1.type_id = t2.type_id
@@ -134,7 +134,7 @@ class MicroService2:
                ORDER BY """+sort_param+"""
                LIMIT %s OFFSET %s;
                """
-        key = [type_name,station_id,int(limit),int(offset)]
+        key = [type_id,station_id,int(limit),int(offset)]
         conn = MicroService2._get_connection()
         cur = conn.cursor()
         res = cur.execute(sql,args = key)
