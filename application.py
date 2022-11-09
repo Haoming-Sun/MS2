@@ -118,7 +118,7 @@ def get_orders_by_name_station(type_name,station_id):
 
     return rsp
 
-@app.route("/api/marketorders/", methods=['GET', 'POST'])
+@app.route("/api/marketorders", methods=['GET', 'POST'])
 def get_cate():
     if request.method=='POST':
         jdata = request.get_json()

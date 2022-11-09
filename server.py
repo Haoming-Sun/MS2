@@ -23,7 +23,7 @@ search_cache=set()
 #
 #     return result
 
-@app.route('/marketorders/', methods=['GET', 'POST'])
+@app.route('/marketorders', methods=['GET', 'POST'])
 def category():
     url = host_url+'/api/marketorders/'
     print(url)

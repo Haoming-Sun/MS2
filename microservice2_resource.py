@@ -44,7 +44,7 @@ class MicroService2:
         sql = """
              SELECT COUNT(*) AS total
              FROM (
-                  SELECT * FROM microService_2.type_name where type_name= %s
+                  SELECT * FROM microService_2.Type_Name where type_name= %s
              ) AS t1
              LEFT JOIN microService_2.market_orders AS t2
              ON t1.type_id = t2.type_id
@@ -110,7 +110,7 @@ class MicroService2:
         sql = """
              SELECT COUNT(*) AS total
              FROM (
-                  SELECT * FROM microService_2.type_name where type_name= %s
+                  SELECT * FROM microService_2.Type_Name where type_name= %s
              ) AS t1
              LEFT JOIN microService_2.market_orders AS t2
              ON t1.type_id = t2.type_id
@@ -145,7 +145,7 @@ class MicroService2:
     def get_child(parent):
         sql = """
              SELECT *
-             FROM microService_2.market_groups
+             FROM microService_2.Market_Groups
              WHERE parent_group_id = %s
              """
 
@@ -160,7 +160,7 @@ class MicroService2:
             print(parent)
             sql = """
                  SELECT *
-                 FROM microService_2.type_name
+                 FROM microService_2.Type_Name
                  WHERE market_group_id = %s
                  """
 
