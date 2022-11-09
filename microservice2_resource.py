@@ -44,9 +44,9 @@ class MicroService2:
         sql = """
              SELECT COUNT(*) AS total
              FROM (
-                  SELECT * FROM microservice_2.type_name where type_name= %s
+                  SELECT * FROM microService_2.type_name where type_name= %s
              ) AS t1
-             LEFT JOIN microservice_2.market_orders AS t2
+             LEFT JOIN microService_2.market_orders AS t2
              ON t1.type_id = t2.type_id
              WHERE station_id<>'None'
              """
@@ -110,9 +110,9 @@ class MicroService2:
         sql = """
              SELECT COUNT(*) AS total
              FROM (
-                  SELECT * FROM microservice_2.type_name where type_name= %s
+                  SELECT * FROM microService_2.type_name where type_name= %s
              ) AS t1
-             LEFT JOIN microservice_2.market_orders AS t2
+             LEFT JOIN microService_2.market_orders AS t2
              ON t1.type_id = t2.type_id
              WHERE station_id=%s
              """
@@ -141,3 +141,33 @@ class MicroService2:
         result = cur.fetchall()
 
         return result,total_record
+    @staticmethod
+    def get_child(parent):
+        sql = """
+             SELECT *
+             FROM microService_2.market_groups
+             WHERE parent_group_id = %s
+             """
+
+        key = [parent]
+        conn = MicroService2._get_connection()
+        cur = conn.cursor()
+        res = cur.execute(sql,args = key)
+        result = cur.fetchall()
+        if result:
+            is_item = '0'
+        else:
+            print(parent)
+            sql = """
+                 SELECT *
+                 FROM microService_2.type_name
+                 WHERE market_group_id = %s
+                 """
+
+            key = [parent]
+            conn = MicroService2._get_connection()
+            cur = conn.cursor()
+            res = cur.execute(sql,args = key)
+            result = cur.fetchall()
+            is_item = '1'
+        return result,is_item

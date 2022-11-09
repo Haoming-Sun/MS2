@@ -48,3 +48,36 @@
     border: 0px;
     float: left;
 }
+.category{
+    border-width: 0.5px;
+    margin: 0px 0px 0px 0px;
+    background-color: rgba(150,150,255,1);
+    border-color: blue;
+    padding-left: 5%;
+    width: 100%;
+
+}
+.category:hover{
+    background-color: rgba(150,150,150,0.6) !important;
+}
+.cate_show{
+    border-bottom: solid;
+    border-width: 0.5px;
+    margin: 0px 0px 0px 0px;
+    border-color: blue;
+    padding-left: 5%;
+    position: relative
+}
+
+.search{
+    display: inline-block;
+    margin: 5px;
+    vertical-align: middle
+}
+
+.icon{
+    display: inline-block;
+    vertical-align: middle;
+    height:30px;
+    margin-right: 10px;
+}

@@ -12,6 +12,9 @@ app = Flask(__name__,
 
 CORS(app)
 
+cate_cache = dict()
+is_item_cache = dict()
+
 @app.route("/api/marketorders/<type_name>", methods=["GET"])
 def get_orders_by_name(type_name):
     limit = request.args.get('limit',default = 20)
@@ -112,6 +115,30 @@ def get_orders_by_name_station(type_name,station_id):
         rsp = Response(json.dumps(result), status=200, content_type="application.json")
     else:
         rsp = Response("NOT FOUND", status=404, content_type="text/plain")
+
+    return rsp
+
+@app.route("/api/marketorders/", methods=['GET', 'POST'])
+def get_cate():
+    if request.method=='POST':
+        jdata = request.get_json()
+        parent = jdata['parent']
+    else:
+        parent = 'None'
+
+    if parent in cate_cache:
+        rt = cate_cache[parent]
+        is_item = is_item_cache[parent]
+    else:
+        rt,is_item= MicroService2.get_child(parent)
+
+    cate_cache[parent] = rt
+    is_item_cache[parent] = is_item
+
+    result = dict()
+    result['data'] = rt
+    result['is_item'] = is_item
+    rsp = Response(json.dumps(result), status=200, content_type="application.json")
 
     return rsp
 
