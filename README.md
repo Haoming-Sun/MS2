@@ -32,3 +32,13 @@ Stop a docker
 ```
 sudo docker stop container_id
 ```
+
+Show all container
+```
+sudo docker ps -a
+```
+
+Delete conatiner
+```
+sudo docker rm container_id
+```
