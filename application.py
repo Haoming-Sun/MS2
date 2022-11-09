@@ -15,8 +15,8 @@ CORS(app)
 cate_cache = dict()
 is_item_cache = dict()
 
-@app.route("/api/marketorders/<type_name>", methods=["GET"])
-def get_orders_by_name(type_name):
+@app.route("/api/marketorders/<type_id>", methods=["GET"])
+def get_orders_by_name(type_id):
     limit = request.args.get('limit',default = 20)
     offset = request.args.get('offset',default = 0)
     sorted = request.args.get('sorted',default='')
@@ -28,14 +28,14 @@ def get_orders_by_name(type_name):
 
     links = []
 
-    links.append({"href": '/marketorders/'+type_name, "rel":"sort", "type": "GET"} )
-    links.append({"href": '/item/'+type_name, "rel":"item detail", "type": "GET"})
+    links.append({"href": '/marketorders/'+type_id, "rel":"sort", "type": "GET"} )
+    links.append({"href": '/item/'+type_id, "rel":"item detail", "type": "GET"})
 
-    rt,total_record = MicroService2.get_orders_by_name(type_name,limit,offset,sorted,sorted_by)
+    rt,total_record = MicroService2.get_orders_by_name(type_id,limit,offset,sorted,sorted_by)
 
     if rt:
         result = dict()
-        result['type_name'] = type_name
+        result['type_name'] = rt[0]['type_name']
         result['type_id'] = rt[0]['type_id']
         result['order_num'] = len(rt)
         result['links'] = links
@@ -55,17 +55,17 @@ def get_orders_by_name(type_name):
     return rsp
 
 
-@app.route("/api/item/<type_name>", methods=["GET"])
-def get_item_by_name(type_name):
+@app.route("/api/item/<type_id>", methods=["GET"])
+def get_item_by_name(type_id):
 
     links = []
-    item_link = {"href": '/marketorders/'+type_name, "rel":"market order", "type": "GET"}
+    item_link = {"href": '/marketorders/'+type_id, "rel":"market order", "type": "GET"}
     links.append(item_link)
-    rt = MicroService2.get_item_by_name(type_name)
+    rt = MicroService2.get_item_by_name(type_id)
 
     if rt:
         result = dict()
-        result['type_name'] = type_name
+        result['type_name'] = rt[0]['type_name']
         result['type_id'] = rt[0]['type_id']
         result['mass'] = rt[0]['mass']
         result['volume'] = rt[0]['volume']
@@ -77,8 +77,8 @@ def get_item_by_name(type_name):
 
     return rsp
 
-@app.route("/api/marketorders/<type_name>/<station_id>", methods=["GET"])
-def get_orders_by_name_station(type_name,station_id):
+@app.route("/api/marketorders/<type_id>/<station_id>", methods=["GET"])
+def get_orders_by_name_station(type_id,station_id):
     limit = request.args.get('limit',default = 20)
     offset = request.args.get('offset',default = 0)
     sorted = request.args.get('sorted',default='')
@@ -90,15 +90,15 @@ def get_orders_by_name_station(type_name,station_id):
 
 
     links = []
-    links.append( {"href": '/item/'+type_name, "rel":"item detail", "type": "GET"})
+    links.append( {"href": '/item/'+type_id, "rel":"item detail", "type": "GET"})
     links.append( {"href": '/station/'+station_id, "rel":"station detail", "type": "GET"} )
-    links.append( {"href": '/marketorders/'+type_name+'/'+station_id, "rel":"sort", "type": "GET"} )
+    links.append( {"href": '/marketorders/'+type_id+'/'+station_id, "rel":"sort", "type": "GET"} )
 
-    rt, total_record = MicroService2.get_orders_by_name_station(type_name,station_id,limit,offset,sorted,sorted_by)
+    rt, total_record = MicroService2.get_orders_by_name_station(type_id,station_id,limit,offset,sorted,sorted_by)
 
     if rt:
         result = dict()
-        result['type_name'] = type_name
+        result['type_name'] = rt[0]['type_name']
         result['type_id'] = rt[0]['type_id']
         result['station_id'] = station_id
         result['order_num'] = len(rt)
