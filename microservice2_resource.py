@@ -141,6 +141,7 @@ class MicroService2:
         result = cur.fetchall()
 
         return result,total_record
+
     @staticmethod
     def get_child(parent):
         sql = """

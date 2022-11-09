@@ -25,7 +25,7 @@ search_cache=set()
 
 @app.route('/marketorders', methods=['GET', 'POST'])
 def category():
-    url = host_url+'/api/marketorders/'
+    url = host_url+'/api/marketorders'
     print(url)
     try:
         uResponse = requests.get(url)
