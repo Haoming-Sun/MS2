@@ -71,11 +71,20 @@ function expand_cate(group_id){
 }
 
 function verify(name){
+    let id = "0"
     $.ajax({
         type: "GET",
-        url: host_url+"/api/item/"+name,
+        url: "http://3.133.83.203:5011/api/name2id/"+name,
+        async: false,
+        success: function( data_ ) {
+            id = data_
+        }
+    });
+    $.ajax({
+        type: "GET",
+        url: host_url+"/api/item/"+id,
         success: function (response) {
-            window.location.href = curr_url+"/marketorders/"+name
+            window.location.href = curr_url+"/marketorders/"+id
         },
         error: function(request, status, error){
             console.log("Error");
@@ -84,9 +93,11 @@ function verify(name){
             $('#search_input').val('')
         }
     })
+
 }
 
 $(document).ready(function(){
+
     //when the page loads, display all the names
     $("#search_input").focus()
     $("#search_input").autocomplete({

@@ -7,8 +7,6 @@ import json
 app = Flask(__name__)
 host_url = "http://3.133.83.203:5011"
 
-search_cache=set()
-
 # ROUTES
 # @app.get("/marketorders/")
 # def get_health():
@@ -33,6 +31,16 @@ def category():
         return "Connection Error"
     Jresponse = uResponse.text
     data = json.loads(Jresponse)
+
+    url = host_url+'/api/getallitem'
+    print(url)
+    try:
+        uResponse = requests.get(url)
+    except requests.ConnectionError:
+        return "Connection Error"
+    Jresponse = uResponse.text
+    search_cache = json.loads(Jresponse)
+
     return render_template('homepage.html' , data = data, name_diction = list(search_cache))
 
 @app.route('/marketorders/<type_id>', methods=['GET', 'POST'])

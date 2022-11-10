@@ -142,6 +142,43 @@ def get_cate():
 
     return rsp
 
+@app.route("/api/name2id/<type_name>", methods=['GET'])
+def get_id(type_name):
+    rt = MicroService2.get_id(type_name)
+
+    if rt:
+        result = dict()
+        result['id'] = rt[0]['type_id']
+        result['name'] = rt[0]['type_name']
+        links = []
+        links.append( {"href": '/item/'+result['id'], "rel":"item detail", "type": "GET"})
+        links.append( {"href": '/marketorders/'+result['id'], "rel":"market orders", "type": "GET"} )
+        result['links'] = links
+        rsp = Response(json.dumps(result), status=200, content_type="application.json")
+    else:
+        rsp = Response("NOT FOUND", status=404, content_type="text/plain")
+
+    return rsp
+
+
+@app.route("/api/getallitem", methods=['GET'])
+def get_all():
+    rt = MicroService2.get_all_item()
+
+    result = dict()
+
+    tmp = []
+    for item in result:
+        tmp.append(item['type_name'])
+    result['item_list'] = tmp
+    rsp = Response(json.dumps(result), status=200, content_type="application.json")
+
+    return rsp
+
+
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5011,debug=True)
+
+

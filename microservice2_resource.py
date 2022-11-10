@@ -172,3 +172,33 @@ class MicroService2:
             result = cur.fetchall()
             is_item = '1'
         return result,is_item
+
+    @staticmethod
+    def get_all_item():
+        sql = """
+             SELECT type_name
+             FROM microService_2.Type_Name
+             """
+
+        conn = MicroService2._get_connection()
+        cur = conn.cursor()
+        res = cur.execute(sql)
+        result = cur.fetchall()
+
+        return result
+
+    @staticmethod
+    def get_id(type_name):
+        sql = """
+             SELECT type_name, type_id
+             FROM microService_2.Type_Name
+             WHERE type_name = %s
+             """
+
+        key = [type_name]
+        conn = MicroService2._get_connection()
+        cur = conn.cursor()
+        res = cur.execute(sql,args = key)
+        result = cur.fetchall()
+
+        return result
