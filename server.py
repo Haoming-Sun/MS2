@@ -40,7 +40,7 @@ def category():
         return "Connection Error"
     Jresponse = uResponse.text
     search_cache = json.loads(Jresponse)
-
+    print(search_cache)
     return render_template('homepage.html' , data = data, name_diction = list(search_cache))
 
 @app.route('/marketorders/<type_id>', methods=['GET', 'POST'])

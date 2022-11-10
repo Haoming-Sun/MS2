@@ -170,6 +170,7 @@ def get_all():
     for item in result:
         tmp.append(item['type_name'])
     result['item_list'] = tmp
+    print(result)
     rsp = Response(json.dumps(result), status=200, content_type="application.json")
 
     return rsp
