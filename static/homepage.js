@@ -71,13 +71,14 @@ function expand_cate(group_id){
 }
 
 function verify(name){
-    let id = "0"
+    var id = "0"
     $.ajax({
         type: "GET",
         url: "http://3.133.83.203:5011/api/name2id/"+name,
         async: false,
         success: function( data_ ) {
-            id = data_['id']
+            id = String(data_['id'])
+            console.log(id)
         }
     });
     $.ajax({
