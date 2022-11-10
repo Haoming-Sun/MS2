@@ -167,7 +167,7 @@ def get_all():
     result = dict()
 
     tmp = []
-    for item in result:
+    for item in rt:
         tmp.append(item['type_name'])
     result['item_list'] = tmp
     print(result)
