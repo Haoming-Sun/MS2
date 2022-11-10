@@ -151,8 +151,8 @@ def get_id(type_name):
         result['id'] = rt[0]['type_id']
         result['name'] = rt[0]['type_name']
         links = []
-        links.append( {"href": '/item/'+result['id'], "rel":"item detail", "type": "GET"})
-        links.append( {"href": '/marketorders/'+result['id'], "rel":"market orders", "type": "GET"} )
+        links.append( {"href": '/item/'+str(result['id']), "rel":"item detail", "type": "GET"})
+        links.append( {"href": '/marketorders/'+str(result['id']), "rel":"market orders", "type": "GET"} )
         result['links'] = links
         rsp = Response(json.dumps(result), status=200, content_type="application.json")
     else:
