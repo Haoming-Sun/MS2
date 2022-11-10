@@ -33,7 +33,6 @@ def category():
         return "Connection Error"
     Jresponse = uResponse.text
     data = json.loads(Jresponse)
-
     return render_template('homepage.html' , data = data, name_diction = list(search_cache))
 
 @app.route('/marketorders/<type_id>', methods=['GET', 'POST'])
