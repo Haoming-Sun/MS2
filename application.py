@@ -145,7 +145,7 @@ def get_cate():
 @app.route("/api/name2id/<type_name>", methods=['GET'])
 def get_id(type_name):
     rt = MicroService2.get_id(type_name)
-
+    print(rt)
     if rt:
         result = dict()
         result['id'] = rt[0]['type_id']
