@@ -100,6 +100,7 @@ function verify(name){
 $(document).ready(function(){
 
     //when the page loads, display all the names
+    console.log(name_diction)
     $("#search_input").focus()
     $("#search_input").autocomplete({
         source: name_diction
