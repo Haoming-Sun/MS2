@@ -77,7 +77,7 @@ function verify(name){
         url: "http://3.133.83.203:5011/api/name2id/"+name,
         async: false,
         success: function( data_ ) {
-            id = data_[0]['id']
+            id = data_['id']
         }
     });
     $.ajax({
