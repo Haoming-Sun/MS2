@@ -7,6 +7,8 @@ import json
 app = Flask(__name__)
 host_url = "http://3.133.83.203:5011"
 
+search_cache = set()
+
 # ROUTES
 # @app.get("/marketorders/")
 # def get_health():
@@ -32,15 +34,6 @@ def category():
     Jresponse = uResponse.text
     data = json.loads(Jresponse)
 
-    url = host_url+'/api/getallitem'
-    print(url)
-    try:
-        uResponse = requests.get(url)
-    except requests.ConnectionError:
-        return "Connection Error"
-    Jresponse = uResponse.text
-    search_cache = json.loads(Jresponse)
-    print(search_cache)
     return render_template('homepage.html' , data = data, name_diction = list(search_cache))
 
 @app.route('/marketorders/<type_id>', methods=['GET', 'POST'])
@@ -53,6 +46,7 @@ def marketorders(type_id):
         return "Connection Error"
     Jresponse = uResponse.text
     data = json.loads(Jresponse)
+    search_cache.add(data['type_name'])
     return render_template('orders.html' , data = data)
 
 @app.route('/item/<type_id>', methods=['GET', 'POST'])
@@ -65,6 +59,7 @@ def itemdetail(type_id):
         return "Connection Error"
     Jresponse = uResponse.text
     data = json.loads(Jresponse)
+    search_cache.add(data['type_name'])
     return render_template('item.html' , data = data)
 
 @app.route('/marketorders/<type_id>/<station_id>', methods=['GET', 'POST'])
@@ -77,6 +72,7 @@ def marketorders_station(type_id,station_id):
         return "Connection Error"
     Jresponse = uResponse.text
     data = json.loads(Jresponse)
+    search_cache.add(data['type_name'])
     return render_template('orders.html' , data = data)
 
 if __name__ == '__main__':
