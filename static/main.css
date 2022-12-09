@@ -7,11 +7,37 @@
     display: inline-block;
     word-wrap: break-word;
     text-align: left;
-    width: 150px;
+    width: 120px;
     margin: 10px 0px 10px 0px;
     border: 0px;
+    text-align: center;
+
+}
+.location {
+
+    display: inline-block;
+    word-wrap: break-word;
+    text-align: left;
+    width: 350px;
+    margin: 10px 0px 10px 0px;
+    border: 0px;
+
+
 }
 
+.station {
+    width: 200px;
+    display:inline-block;
+    word-wrap: break-word;
+    text-align: left;
+    margin: 10px 0px 10px 0px;
+    border: 0px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    vertical-align:bottom;
+
+}
 .items {
     display: inline-block;
     word-wrap: break-word;/

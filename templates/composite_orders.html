@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+
+<script type="text/javascript" src="{{ url_for('static', filename = 'composite_orders.js') }}"></script>
+
+<script>
+    let data = {{data|tojson}}
+    var url = window.location.href
+    var arr = url.split("/")
+    var curr_url = arr[0] + "//" + arr[2]
+    console.log(data)
+</script>
+
+<span class="items">item name: </span> <a class="items" id="item_name"> </a><br>
+<span class="items">item id: </span> <span class="items" id="item_id"> </span><br>
+<a class="btn btn-outline-info search" href="/marketorders">back to homepage</a>
+<br>
+<br>
+    <a class="location" id="location">location</a><a class="words" id="duration">duration</a><a class="words" id="is_buy_order">is buy order</a><a class="words" id="price">price</a><a class="words" id="volume_remain">volume remain</a><a class="words" id="volume_total">volume total</a><a class="words" id="last_modified">last modified</a>
+<hr>
+<div id="order_container">
+</div>
+<div id="page">
+</div>
+
+
+
+{% endblock %}
+

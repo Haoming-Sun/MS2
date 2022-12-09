@@ -3,6 +3,7 @@ from microservice2_resource import MicroService2
 from flask_cors import CORS
 from datetime import datetime
 import json
+import requests
 
 # Create the Flask application object.
 app = Flask(__name__,
@@ -117,6 +118,8 @@ def get_orders_by_name_station(type_id,station_id):
         rsp = Response("NOT FOUND", status=404, content_type="text/plain")
 
     return rsp
+
+
 
 @app.route("/api/marketorders", methods=['GET', 'POST'])
 def get_cate():

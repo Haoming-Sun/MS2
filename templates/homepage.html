@@ -8,7 +8,12 @@
 <script>
     let data = {{data|tojson}}
     var name_diction={{name_diction|tojson}}
-    var host_url = "http://3.133.83.203:5011"
+    var location_diction={{location_diction|tojson}}
+    var station_diction={{station_diction|tojson}}
+    //var host_url = "http://3.133.83.203:5011"
+    var host_url = "http://127.0.0.1:5011"
+    var MS1_url = "http://54.165.212.118:5011"
+    var composite_url = "http://127.0.0.1:5013"
     var url = window.location.href
     var arr = url.split("/")
     var curr_url = arr[0] + "//" + arr[2]
@@ -16,13 +21,27 @@
 </script>
 
 <br>
-
+<div> Search with MS2 </div>
 <input id="search_input" class="form-control search" type="search" style = "width: 20%;" placeholder="Item Name" aria-label="Search" required>
 <button type='button' id="search_button" class="btn btn-outline-info search" style="margin-left: 20px;color:DarkSlateBlue;border-color:DarkSlateBlue;">Search</button>
 <span id="search_note" class="search"></span>
-
 <br>
 
+<div> Search with Composite MS </div>
+<input id="search_input_c" class="form-control search" type="search" style = "width: 20%;" placeholder="Item Name" aria-label="Search" required>
+<button type='button' id="search_button_c" class="btn btn-outline-info search" style="margin-left: 20px;color:DarkSlateBlue;border-color:DarkSlateBlue;">Search</button>
+<span id="search_note_c" class="search"></span>
+<br>
+<input id="search_input_r" class="form-control search" type="search" style = "width: 20%;" placeholder="Item Name" aria-label="Search" required>
+<input id="search_input_r2" class="form-control search" type="search" style = "width: 20%;" placeholder="Range Name" aria-label="Search" required>
+<button type='button' id="search_button_r" class="btn btn-outline-info search" style="margin-left: 20px;color:DarkSlateBlue;border-color:DarkSlateBlue;">Search</button>
+<span id="search_note_r" class="search"></span>
+<br>
+<input id="search_input_w" class="form-control search" type="search" style = "width: 20%;" placeholder="Item Name" aria-label="Search" required>
+<input id="search_input_w2" class="form-control search" type="search" style = "width: 20%;" placeholder="Range Name" aria-label="Search" required>
+<input id="search_input_w3" class="form-control search" type="search" style = "width: 20%;" placeholder="Range 1-10" aria-label="Search" required>
+<button type='button' id="search_button_w" class="btn btn-outline-info search" style="margin-left: 20px;color:DarkSlateBlue;border-color:DarkSlateBlue;">Search</button>
+<span id="search_note_w" class="search"></span>
 <br>
 <div id="cate_container">
 

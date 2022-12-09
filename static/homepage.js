@@ -53,7 +53,7 @@ function expand_cate(group_id){
                     $.each(response['data'], function(i, datum) {
                         let new_cate = $("<a class='category' id="+datum['type_name']+">"+datum['type_name']+"</a> <br>")
                         new_cate.attr('level',next_level)
-                        new_cate.attr('href',curr_url+"/marketorders/"+datum['type_id'])
+                        new_cate.attr('href',curr_url+"/composite/marketorders/"+datum['type_id'])
                         new_cate.attr('style',"background: rgba(255,255,255,1);")
                         $("#show_"+group_id).append(new_cate)
                     })
@@ -71,21 +71,14 @@ function expand_cate(group_id){
 }
 
 function verify(name){
-    var id = "0"
+    var id = "-1"
     $.ajax({
         type: "GET",
-        url: "http://3.133.83.203:5011/api/name2id/"+name,
+        url: host_url+"/api/name2id/"+name,
         async: false,
         success: function( data_ ) {
             id = String(data_['id'])
             console.log(id)
-        }
-    });
-    $.ajax({
-        type: "GET",
-        url: host_url+"/api/item/"+id,
-        success: function (response) {
-            window.location.href = curr_url+"/marketorders/"+id
         },
         error: function(request, status, error){
             console.log("Error");
@@ -93,7 +86,111 @@ function verify(name){
             $('#search_note').append("<span style='color: red; margin-left: 25px'>Wrong item name!</span>")
             $('#search_input').val('')
         }
-    })
+    });
+    if (id != "-1"){
+        window.location.href = curr_url+"/marketorders/"+id
+    }
+
+}
+
+function verify_c(name){
+    var id = "-1"
+    $.ajax({
+        type: "GET",
+        url: host_url+"/api/name2id/"+name,
+        async: false,
+        success: function( data_ ) {
+            id = String(data_['id'])
+            console.log(id)
+        },
+        error: function(request, status, error){
+            console.log("Error");
+            $('#search_note_c').empty()
+            $('#search_note_c').append("<span style='color: red; margin-left: 25px'>Wrong item name!</span>")
+            $('#search_input_c').val('')
+        }
+    });
+    if (id != "-1"){
+        window.location.href = curr_url+"/composite/marketorders/"+id
+    }
+
+}
+
+function verify_r(name,location){
+    var id = "-1"
+    var l_id = "-1"
+    $.ajax({
+        type: "GET",
+        url: host_url+"/api/name2id/"+name,
+        async: false,
+        success: function( data_ ) {
+            id = String(data_['id'])
+            console.log(id)
+        },
+        error: function(request, status, error){
+            console.log("Error");
+            $('#search_note_r').empty()
+            $('#search_note_r').append("<span style='color: red; margin-left: 25px'>Wrong item name!</span>")
+            $('#search_input_r').val('')
+        }
+    });
+    $.ajax({
+        type: "GET",
+        url: MS1_url+"/api/item/"+location,
+        async: false,
+        success: function( data_ ) {
+            l_id = String(data_['id'])
+            console.log(id)
+        },
+        error: function(request, status, error){
+            console.log("Error");
+            $('#search_note_r').empty()
+            $('#search_note_r').append("<span style='color: red; margin-left: 25px'>Wrong location name!</span>")
+            $('#search_input_r2').val('')
+        }
+    });
+    if (id != "-1" && l_id != "-1" ){
+        window.location.href = curr_url+"/composite/marketorders/"+id+"/by_range/"+l_id
+    }
+
+}
+
+function verify_w(name,location,distance){
+    var id = "-1"
+    var l_id = "-1"
+    $.ajax({
+        type: "GET",
+        url: host_url+"/api/name2id/"+name,
+        async: false,
+        success: function( data_ ) {
+            id = String(data_['id'])
+            console.log(id)
+        },
+        error: function(request, status, error){
+            console.log("Error");
+            $('#search_note_w').empty()
+            $('#search_note_w').append("<span style='color: red; margin-left: 25px'>Wrong item name!</span>")
+            $('#search_input_w').val('')
+        }
+    });
+    $.ajax({
+        type: "GET",
+        url: MS1_url+"/api/item/"+name,
+        async: false,
+        success: function( data_ ) {
+            l_id = String(data_['id'])
+            console.log(id)
+        },
+        error: function(request, status, error){
+            console.log("Error");
+            $('#search_note_w').empty()
+            $('#search_note_w').append("<span style='color: red; margin-left: 25px'>Wrong location name!</span>")
+            $('#search_input_w2').val('')
+        }
+    });
+    if (id != "-1" && l_id != "-1" ){
+        window.location.href = curr_url+"/composite/marketorders/"+id+"/station/"+l_id+"/within"+distance
+    }
 
 }
 
@@ -101,6 +198,8 @@ $(document).ready(function(){
 
     //when the page loads, display all the names
     console.log(name_diction)
+    console.log(location_diction)
+    console.log(station_diction)
     $("#search_input").focus()
     $("#search_input").autocomplete({
         source: name_diction
@@ -115,6 +214,58 @@ $(document).ready(function(){
         console.log(name)
         verify(name)
     });
+
+    $("#search_input_c").autocomplete({
+        source: name_diction
+    })
+    $('#search_input_c').keyup(function (event){
+        if (event.which == 13) {
+            $("#search_button_c").trigger('click')
+        }
+    })
+    $("#search_button_c").click(function (event) {
+        var name = $("#search_input_c").val().trim()
+        console.log(name)
+        verify_c(name)
+    });
+
+    $("#search_input_r").autocomplete({
+        source: name_diction
+    })
+    $("#search_input_r2").autocomplete({
+        source: location_diction
+    })
+    $('#search_input_r2').keyup(function (event){
+        if (event.which == 13) {
+            $("#search_button_r").trigger('click')
+        }
+    })
+    $("#search_button_r").click(function (event) {
+        var name = $("#search_input_r").val().trim()
+        var location = $("#search_input_r2").val().trim()
+        console.log(name,location)
+        verify_r(name,location)
+    });
+
+    $("#search_input_w").autocomplete({
+        source: name_diction
+    })
+    $("#search_input_w2").autocomplete({
+        source: station_diction
+    })
+    $('#search_input_w3').keyup(function (event){
+        if (event.which == 13) {
+            $("#search_button_w").trigger('click')
+        }
+    })
+    $("#search_button_w").click(function (event) {
+        var name = $("#search_input_w").val().trim()
+        var location = $("#search_input_w2").val().trim()
+        var distance = $("#search_input_w3").val().trim()
+        console.log(name,location,distance)
+        verify_w(name,location.distance)
+    });
+
 
     $.each(data['data'], function(i, datum) {
         let img = $("<img class='icon'>")
