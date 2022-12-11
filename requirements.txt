@@ -5,3 +5,4 @@ Flask-Cors==3.0.10
 Jinja2==3.1.2
 PyMySQL==1.0.2
 json5==0.9.6
+requests==2.6.0
