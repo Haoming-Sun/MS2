@@ -5,9 +5,10 @@ from datetime import datetime
 import requests
 import json
 app = Flask(__name__)
-#host_url = "http://3.133.83.203:5011"
-host_url="http://127.0.0.1:5011"
-composite_url = "http://127.0.0.1:5013"
+host_url = "http://3.133.83.203:5011"
+#host_url="http://127.0.0.1:5011"
+#composite_url = "http://127.0.0.1:5013"
+composite_url = "http://3.133.83.203:5013"
 search_cache = set()
 location_cache = set()
 station_cache = set()
