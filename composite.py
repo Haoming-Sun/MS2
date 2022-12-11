@@ -13,9 +13,9 @@ app = Flask(__name__,
 
 CORS(app)
 
-MS2_url = "http://3.133.83.203:5011"
+MS2_url = "http://3.18.109.8:5011"
 #MS2_url = "http://127.0.0.1:5011"
-MS1_url = "http://54.165.212.118:5011"
+MS1_url = "http://3.18.109.8:5011"
 
 cate_cache = dict()
 is_item_cache = dict()
