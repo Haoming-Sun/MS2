@@ -56,7 +56,7 @@ def get_orders_by_name(type_id):
     return rsp
 
 
-@app.route("/api/item/<type_id>", methods=["GET"])
+@app.route("/api/goods/<type_id>", methods=["GET"])
 def get_item_by_name(type_id):
 
     links = []

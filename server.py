@@ -40,7 +40,7 @@ def marketorders(type_id):
 
 @app.route('/item/<type_id>', methods=['GET', 'POST'])
 def itemdetail(type_id):
-    url = host_url+'/api/item/{}'.format(type_id)
+    url = host_url+'/api/goods/{}'.format(type_id)
     print(url)
     try:
         uResponse = requests.get(url)

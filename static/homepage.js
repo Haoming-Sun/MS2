@@ -195,7 +195,7 @@ function verify_w(name,location,distance){
 }
 
 $(document).ready(function(){
-
+    console.log(1)
     //when the page loads, display all the names
     console.log(name_diction)
     console.log(location_diction)
