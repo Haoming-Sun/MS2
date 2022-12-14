@@ -5,10 +5,12 @@ from datetime import datetime
 import requests
 import json
 app = Flask(__name__)
-host_url = "http://3.18.109.8:5011"
+#host_url = "http://3.18.109.8:5011"
 #host_url="http://127.0.0.1:5011"
 #composite_url = "http://127.0.0.1:5013"
-composite_url = "http://3.18.109.8:5013"
+#composite_url = "http://3.18.109.8:5013"
+host_url="https://c3umgylja9.execute-api.us-east-2.amazonaws.com/cloudcomputing-eve"
+composite_url="https://c3umgylja9.execute-api.us-east-2.amazonaws.com/cloudcomputing-eve"
 search_cache = set()
 location_cache = set()
 station_cache = set()

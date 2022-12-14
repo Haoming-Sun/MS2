@@ -26,8 +26,11 @@ function expand_cate(group_id){
         $.ajax({
             type: "POST",
             url: host_url + "/api/marketorders",
+            crossDomain: true,
+            headers: {"Access-Control-Allow-Origin": "*"},
+            //contentType: "application/json; charset=utf-8",
             dataType : "json",
-            contentType: "application/json; charset=utf-8",
+            contentType: "application/json",
             data: JSON.stringify(data),
             success: function (response) {
                 if (response['is_item'] == '0'){
@@ -76,6 +79,10 @@ function verify(name){
         type: "GET",
         url: host_url+"/api/name2id/"+name,
         async: false,
+        crossDomain: true,
+        dataType : "json",
+        contentType: "application/json",
+        headers: {"Access-Control-Allow-Origin": "*"},
         success: function( data_ ) {
             id = String(data_['id'])
             console.log(id)
@@ -99,6 +106,10 @@ function verify_c(name){
         type: "GET",
         url: host_url+"/api/name2id/"+name,
         async: false,
+        crossDomain: true,
+        dataType : "json",
+        contentType: "application/json",
+        headers: {"Access-Control-Allow-Origin": "*"},
         success: function( data_ ) {
             id = String(data_['id'])
             console.log(id)
@@ -123,6 +134,10 @@ function verify_r(name,location){
         type: "GET",
         url: host_url+"/api/name2id/"+name,
         async: false,
+        crossDomain: true,
+        dataType : "json",
+        contentType: "application/json",
+        headers: {"Access-Control-Allow-Origin": "*"},
         success: function( data_ ) {
             id = String(data_['id'])
             console.log(id)
@@ -138,6 +153,10 @@ function verify_r(name,location){
         type: "GET",
         url: MS1_url+"/api/item/"+location,
         async: false,
+        crossDomain: true,
+        dataType : "json",
+        contentType: "application/json",
+        headers: {"Access-Control-Allow-Origin": "*"},
         success: function( data_ ) {
             l_id = String(data_['id'])
             console.log(id)
@@ -162,6 +181,10 @@ function verify_w(name,location,distance){
         type: "GET",
         url: host_url+"/api/name2id/"+name,
         async: false,
+        crossDomain: true,
+        dataType : "json",
+        contentType: "application/json",
+        headers: {"Access-Control-Allow-Origin": "*"},
         success: function( data_ ) {
             id = String(data_['id'])
             console.log(id)
@@ -177,6 +200,10 @@ function verify_w(name,location,distance){
         type: "GET",
         url: MS1_url+"/api/item/"+name,
         async: false,
+        crossDomain: true,
+        dataType : "json",
+        contentType: "application/json",
+        headers: {"Access-Control-Allow-Origin": "*"},
         success: function( data_ ) {
             l_id = String(data_['id'])
             console.log(id)
