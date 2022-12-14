@@ -24,7 +24,7 @@ is_item_cache = dict()
 
 @app.route("/api/composite/marketorders/<type_id>", methods = ["GET"])
 def get_orders_composite(type_id):
-    url = request.path.replace("/composite","")+'?{}'.format(type_id, request.query_string.decode("utf-8") )
+    url = request.path.replace("/composite","")+'?{}'.format(request.query_string.decode("utf-8") )
     url = MS2_url+url
     print(url)
 
@@ -39,7 +39,6 @@ def get_orders_composite(type_id):
         for i in range(len(data['orders'])):
             curr_station_id = data['orders'][i]['station_id']
             url = MS1_url+"/api/stationparent/"+curr_station_id
-            print(url)
             try:
                 uResponse = requests.get(url)
             except requests.ConnectionError:
@@ -62,7 +61,7 @@ def get_orders_composite(type_id):
 
 @app.route("/api/composite/marketorders/<type_id>/<station_id>", methods = ["GET"])
 def get_orders_station_composite(type_id,station_id):
-    url = request.path.replace("/composite","")+'?{}'.format(type_id, request.query_string.decode("utf-8") )
+    url = request.path.replace("/composite","")+'?{}'.format(request.query_string.decode("utf-8") )
     url = MS2_url+url
     print(url)
     links = []
@@ -78,7 +77,7 @@ def get_orders_station_composite(type_id,station_id):
         for i in range(len(data['orders'])):
             curr_station_id = data['orders'][i]['station_id']
             url = MS1_url+"/api/stationparent/"+curr_station_id
-            print(url)
+
             try:
                 uResponse = requests.get(url)
             except requests.ConnectionError:
@@ -131,7 +130,7 @@ def get_orders_by_range(type_id,location_id):
     for i in range(len(rt)):
         curr_station_id = rt[i]['station_id']
         url = MS1_url+"/api/stationparent/"+curr_station_id
-        print(url)
+
         try:
             uResponse = requests.get(url)
         except requests.ConnectionError:
@@ -204,7 +203,7 @@ def get_orders_by_distance(type_id,station_id,distance):
     for i in range(len(rt['orders'])):
         curr_station_id = rt[i]['station_id']
         url = MS1_url+"/api/stationparent/"+curr_station_id
-        print(url)
+
         try:
             uResponse = requests.get(url)
         except requests.ConnectionError:
