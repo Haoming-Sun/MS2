@@ -41,7 +41,6 @@ function displayOrders(data){
 
 $(document).ready(function(){
     //when the page loads, display all the names
-    let url = ""
     $.each(data['links'], function(i, datum) {
         if (datum['rel']=="item detail"){
             $("#item_name").attr("href", datum['href'])
