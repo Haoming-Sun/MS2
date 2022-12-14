@@ -46,9 +46,6 @@ $(document).ready(function(){
         if (datum['rel']=="item detail"){
             $("#item_name").attr("href", datum['href'])
         }
-        if (datum['rel']=='sort'){
-            url = datum['href']
-        }
     })
     console.log(data)
     $("#item_name").append(data['type_name'])
