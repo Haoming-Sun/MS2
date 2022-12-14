@@ -7,7 +7,13 @@
 
 <script>
     let data = {{data|tojson}}
-    var url = window.location.href+"/composite"
+    var url = window.location.href
+    var arr = url.split("/")
+    var curr_url = arr[0] + "//" + arr[2]
+    console.log(url)
+    console.log(arr)
+    console.log(curr_url)
+    url = url.split("?")[0]
 </script>
 
 <span class="items">item name: </span> <a class="items" id="item_name"> </a><br>

@@ -24,7 +24,7 @@ is_item_cache = dict()
 
 @app.route("/api/composite/marketorders/<type_id>", methods = ["GET"])
 def get_orders_composite(type_id):
-    url = request.path.replace("/composite","")
+    url = request.path.replace("/composite","")+'?{}'.format(type_id, request.query_string.decode("utf-8") )
     url = MS2_url+url
     print(url)
 
@@ -62,7 +62,7 @@ def get_orders_composite(type_id):
 
 @app.route("/api/composite/marketorders/<type_id>/<station_id>", methods = ["GET"])
 def get_orders_station_composite(type_id,station_id):
-    url = request.path.replace("/composite","")
+    url = request.path.replace("/composite","")+'?{}'.format(type_id, request.query_string.decode("utf-8") )
     url = MS2_url+url
     print(url)
     links = []

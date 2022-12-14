@@ -49,7 +49,7 @@ $(document).ready(function(){
     console.log(data)
     $("#item_name").append(data['type_name'])
     $("#item_id").append(data['type_id'])
-
+    console.log(url)
     $("#station_id").attr('href', url+'?offset='+data['offset']+"&limit="+data['limit']+"&sorted=ASC&sorted_by=station_id")
     $("#duration").attr('href', url+'?offset='+data['offset']+"&limit="+data['limit']+"&sorted=ASC&sorted_by=duration")
     $("#is_buy_order").attr('href', url+'?offset='+data['offset']+"&limit="+data['limit']+"&sorted=ASC&sorted_by=is_buy_order")
