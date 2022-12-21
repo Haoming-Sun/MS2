@@ -122,7 +122,7 @@ function verify_c(name){
         }
     });
     if (id != "-1"){
-        window.location.href = curr_url+"/composite/marketorders/"+id
+        window.location.href = curr_url+"/marketorders/"+id
     }
 
 }
@@ -169,7 +169,7 @@ function verify_r(name,location){
         }
     });
     if (id != "-1" && l_id != "-1" ){
-        window.location.href = curr_url+"/composite/marketorders/"+id+"/by_range/"+l_id
+        window.location.href = curr_url+"/marketorders/"+id+"/by_range/"+l_id
     }
 
 }
@@ -216,7 +216,7 @@ function verify_w(name,location,distance){
         }
     });
     if (id != "-1" && l_id != "-1" ){
-        window.location.href = curr_url+"/composite/marketorders/"+id+"/station/"+l_id+"/within"+distance
+        window.location.href = curr_url+"/marketorders/"+id+"/station/"+l_id+"/within"+distance
     }
 
 }
