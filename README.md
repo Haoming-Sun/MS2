@@ -1,4 +1,4 @@
-# MS2
+# MS2 and Composite Service
 
 For EC2 dockers:
 
