@@ -56,7 +56,7 @@ function expand_cate(group_id){
                     $.each(response['data'], function(i, datum) {
                         let new_cate = $("<a class='category' id="+datum['type_name']+">"+datum['type_name']+"</a> <br>")
                         new_cate.attr('level',next_level)
-                        new_cate.attr('href',curr_url+"/marketorders/"+datum['type_id'])
+                        new_cate.attr('href',curr_url+"/composite/marketorders/"+datum['type_id'])
                         new_cate.attr('style',"background: rgba(255,255,255,1);")
                         $("#show_"+group_id).append(new_cate)
                     })

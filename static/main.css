@@ -107,3 +107,113 @@
     height:30px;
     margin-right: 10px;
 }
+
+.searchResultBoxClass {
+    display: flex;
+    justify-content: space-between;
+    /* align-items: center; */
+    align-items: right;
+    width: 8000px;
+}
+section{
+    position: relative;
+    width:100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+section.main{
+    width: 580px;
+    margin: 0 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+section .main .searchBx/* search-content */{
+    position: relative;
+    width: 100%;
+    margin-top: 20px;
+
+}
+
+section .main .searchBx .query{
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #ccc;
+    outline: none;
+    font-size: 16px;
+    border-radius: 30px;
+    padding-left: 45px;
+    padding-right: 60px;
+
+}
+
+section .main .searchBx .icons{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    pointer-events: none;
+}
+
+section .main .searchBx .icons img{
+    max-width: 100%;
+}
+
+.search-btn{
+    margin: 0 5px;
+    margin-top: 20px;
+    padding: 12px 20px;
+    color: #555;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+.search-btn:hover
+.station{
+    font-size : 18p;
+    /* font-weight: bold; */
+
+}
+
+.items1 {
+    /* display: inline-block; */
+    /* word-wrap: break-word; */
+    text-align: left;
+    /* margin: 10px 0px 10px 0px; */
+    font-size: 20px;
+    font-weight: bold;
+    /* min-width: 20px; */
+}
+.itemdetail1 {
+    /* display: inline-block; */
+    word-wrap: break-word;
+    text-align: left;
+    margin: 10px 0px 10px 0px;
+    font-size: 20px;
+    min-width: 20px;
+}
+.words1 {
+    /* display: inline-block;
+    word-wrap: break-word; */
+    text-align: left;
+    /* width: 30px; */
+    /* margin: 10px 0px 10px 0px; */
+    border: 0px;
+    color: blue;
+}
+
+.error_note{
+    color: red;
+    font-size:30px;
+}

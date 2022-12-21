@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<script type="text/javascript" src="{{ url_for('static', filename = 'childstation.js') }}"></script>
+<br>
+<br>
+<div style="text-align:center">
+
+  <img src= "https://upload.wikimedia.org/wikipedia/en/2/29/Eve-online_cover.png">
+  <br>
+  <br>
+  <form action="temp" method="POST" id="searchFrom" style=" text-align: center;">
+    <input class="form-control mr-sm-2 query" type="text" style="vertical-align: middle; width: 40%; display: inline; height: 45px" placeholder="Search" name="search" aria-label="Search" id="search-content" required>
+    <button class="btn btn-outline-success my-2 my-sm-0 search-btn " style="margin-left: 12px" type="submit">EVE Search</button>
+  </form>
+  <br>
+  <div id="wrong_name" class="error_note"></div>
+
+</div>
+
+<div class="container" style="margin-top: 10px">
+      <div id="searchResultBox" class="searchResultBoxClass"></div>
+</div>
+
+  </body>
+</html>
+{% endblock %}

@@ -13,7 +13,33 @@ host_url="https://c3umgylja9.execute-api.us-east-2.amazonaws.com/cloudcomputing-
 composite_url="https://c3umgylja9.execute-api.us-east-2.amazonaws.com/cloudcomputing-eve"
 search_cache = set()
 location_cache = set()
+
 station_cache = set()
+@app.route('/location')
+def index():
+    return render_template('childstation.html')
+
+@app.route("/temp", methods=['GET', 'POST'])
+def location():
+    ans = request.form["search"]
+    url = host_url+'/api/item/' + ans
+    # url = "https://c3umgylja9.execute-api.us-east-2.amazonaws.com/cloudcomputing-eve/api/item/" + ans
+
+    try:
+        uResponse = requests.get(url)
+    except requests.ConnectionError:
+        return "Connection Error"
+    Jresponse = uResponse.text
+
+    try:
+        data = json.loads(Jresponse)
+    except:
+        return jsonify(None)
+
+    if data:
+        return jsonify(data)
+    else:
+        return jsonify(None)
 
 @app.route('/marketorders/', methods=['GET', 'POST'])
 def category():
@@ -26,6 +52,18 @@ def category():
     Jresponse = uResponse.text
     data = json.loads(Jresponse)
     return render_template('homepage.html' , data = data, name_diction = list(search_cache), location_diction = list(location_cache), station_diction = list(station_cache))
+
+@app.route('/composite/', methods=['GET', 'POST'])
+def category_c():
+    url = host_url+'/api/marketorders'
+    print(url)
+    try:
+        uResponse = requests.get(url)
+    except requests.ConnectionError:
+        return "Connection Error"
+    Jresponse = uResponse.text
+    data = json.loads(Jresponse)
+    return render_template('homepage_c.html' , data = data, name_diction = list(search_cache), location_diction = list(location_cache), station_diction = list(station_cache))
 
 @app.route('/marketorders/<type_id>', methods=['GET', 'POST'])
 def marketorders(type_id):

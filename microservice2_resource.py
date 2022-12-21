@@ -23,7 +23,13 @@ class MicroService2:
 
     @staticmethod
     def get_orders_by_name(type_id,limit,offset,sorted,sorted_by):
-        sort_dict = {'is_buy_order':'DESC','price':'DESC','duration':'DESC','station_id':'DESC','last_modified':'DESC','volume_remain':'DESC','volume_total':'DESC'}
+        sort_dict = {'is_buy_order':'DESC',
+                     'price':'DESC',
+                     'duration':'DESC',
+                     'station_id':'DESC',
+                     'last_modified':'DESC',
+                     'volume_remain':'DESC',
+                     'volume_total':'DESC'}
         if sorted:
             sorted = list(sorted.split(','))
         if sorted_by:
