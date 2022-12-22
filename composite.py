@@ -17,7 +17,7 @@ CORS(app)
 #MS2_url = "http://127.0.0.1:5011"
 #MS1_url = "http://54.165.212.118:5011"
 #MS2_url="https://c3umgylja9.execute-api.us-east-2.amazonaws.com/cloudcomputing-eve"
-MS2_url = "http:18.219.178.207:5011"
+MS2_url = "http://18.219.178.207:5011"
 MS1_url="https://c3umgylja9.execute-api.us-east-2.amazonaws.com/cloudcomputing-eve"
 
 cate_cache = dict()
