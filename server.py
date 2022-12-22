@@ -24,7 +24,7 @@ def index():
 @app.route("/temp", methods=['GET', 'POST'])
 def location():
     ans = request.form["search"]
-    url = host_url+'/api/item/' + ans
+    url = "https://c3umgylja9.execute-api.us-east-2.amazonaws.com/cloudcomputing-eve/api/item/" + ans
     # url = "https://c3umgylja9.execute-api.us-east-2.amazonaws.com/cloudcomputing-eve/api/item/" + ans
 
     try:
